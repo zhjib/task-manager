@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback, type FormEvent } from 'react';
-import { logger } from '@lark-apaas/client-toolkit/logger';
 import { Button } from '@client/src/components/ui/button';
 import { Input } from '@client/src/components/ui/input';
 import { Badge } from '@client/src/components/ui/badge';
@@ -44,7 +43,7 @@ const TasksPage = () => {
       const result = await fetchTasks(filterPriority);
       setTasks(result.items);
     } catch (error) {
-      logger.error('加载任务列表失败', error);
+      console.error('加载任务列表失败', error);
     } finally {
       setLoading(false);
     }
@@ -66,7 +65,7 @@ const TasksPage = () => {
       setPriority('medium');
       await loadTasks();
     } catch (error) {
-      logger.error('添加任务失败', error);
+      console.error('添加任务失败', error);
     } finally {
       setSubmitting(false);
     }
@@ -77,7 +76,7 @@ const TasksPage = () => {
       const updated = await updateTask(task.id, { isCompleted: !task.isCompleted });
       setTasks((prev) => prev.map((t) => (t.id === task.id ? updated : t)));
     } catch (error) {
-      logger.error('切换任务状态失败', error);
+        console.error('切换任务状态失败', error);
     }
   };
 
@@ -86,7 +85,7 @@ const TasksPage = () => {
       await deleteTask(id);
       setTasks((prev) => prev.filter((t) => t.id !== id));
     } catch (error) {
-      logger.error('删除任务失败', error);
+        console.error('删除任务失败', error);
     }
   };
 
