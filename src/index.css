@@ -1,0 +1,264 @@
+/* 智能任务管理系统 - 简洁美观的中文界面 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #4f6ef7;
+  --primary-dark: #3b55d9;
+  --bg: #f3f5f9;
+  --card: #ffffff;
+  --text: #1f2733;
+  --muted: #8a94a6;
+  --danger: #e5484d;
+  --radius: 12px;
+  --shadow: 0 2px 12px rgba(31, 39, 51, 0.07);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC",
+    "Microsoft YaHei", "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 32px 16px;
+}
+
+.app {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* 标题区 */
+.app-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.app-header h1 {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.app-header .subtitle {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* 添加区 */
+.add-panel {
+  display: flex;
+  gap: 10px;
+  background: var(--card);
+  padding: 16px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
+}
+
+.add-panel input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid #dfe4ee;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.add-panel input:focus {
+  border-color: var(--primary);
+}
+
+.add-panel select {
+  padding: 12px 10px;
+  border: 1px solid #dfe4ee;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #fff;
+  cursor: pointer;
+  outline: none;
+}
+
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--primary-dark);
+}
+
+/* 筛选栏 */
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.filter-btn {
+  flex: 1;
+  padding: 9px 0;
+  border: 1px solid #dfe4ee;
+  border-radius: 20px;
+  background: var(--card);
+  color: var(--text);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+/* 任务列表 */
+.task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--card);
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.task-title {
+  flex: 1;
+  min-width: 0;
+  font-size: 15px;
+  word-break: break-all;
+  line-height: 1.4;
+}
+
+/* 已完成：删除线 + 颜色变淡 */
+.task-item.done .task-title {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+.priority {
+  flex-shrink: 0;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.tag-高 { background: #fde8e8; color: #c0392b; }
+.tag-中 { background: #fdf3d7; color: #b7791f; }
+.tag-低 { background: #e4f5e9; color: #1e8449; }
+
+.btn-toggle {
+  flex-shrink: 0;
+  padding: 6px 12px;
+  border: 1px solid #cfd6e4;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-toggle:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.task-item.done .btn-toggle {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.btn-delete {
+  flex-shrink: 0;
+  padding: 6px 12px;
+  border: 1px solid #f0c4c6;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--danger);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-delete:hover {
+  background: var(--danger);
+  border-color: var(--danger);
+  color: #fff;
+}
+
+/* 空状态与提示 */
+.empty {
+  text-align: center;
+  padding: 48px 0;
+  color: var(--muted);
+  font-size: 14px;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.status-tip {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.status-tip.error {
+  color: var(--danger);
+}
+
+/* 移动端适配 */
+@media (max-width: 480px) {
+  .add-panel {
+    flex-wrap: wrap;
+  }
+  .add-panel input {
+    flex-basis: 100%;
+  }
+  .task-item {
+    flex-wrap: wrap;
+  }
+}
