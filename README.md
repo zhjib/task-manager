@@ -159,6 +159,7 @@ Import 页面的 **Environment Variables** 逐条添加：
 | `SUPABASE_URL` | 你的 Project URL |
 | `SUPABASE_ANON_KEY` | 你的 Publishable key |
 | `NODE_ENV` | `production` |
+| `CLIENT_BASE_PATH` | `/` |
 
 ⚠️ 变量名不要改：`SUPABASE_ANON_KEY` 是代码里写死的，值用 `sb_publishable_...` 即可，SDK 两种格式都认。
 
